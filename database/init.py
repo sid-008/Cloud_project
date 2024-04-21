@@ -30,10 +30,6 @@ c.execute("""create table if not exists orders
 id integer primary key,
 user_id integer,
 product_id integer,
-foreign key (user_id)
-    references users(id)
-foreign key(product_id)
-    references products(id)
 )
 """)
 
