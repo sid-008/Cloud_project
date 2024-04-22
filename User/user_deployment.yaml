@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userhandle
+  labels:
+    app: userhandle
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: userhandle
+  template:
+    metadata:
+      labels:
+        app: userhandle
+    spec:
+      containers:
+        - name: userhandle
+          image: siddharthtewari/cc_user
+          ports:
+          - containerPort: 5000
+          imagePullPolicy: Always
+
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: userhandle-service
+spec:
+  selector:
+    app: userhandle
+  ports:
+  - port: 5000
+    targetPort: 5000
+  type: LoadBalancer
